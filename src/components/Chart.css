@@ -1,0 +1,20 @@
+.Chart-intro{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 26px;
+    color: yellow;
+    background-color: grey;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.Chart-body {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  background-color: yellow;
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}

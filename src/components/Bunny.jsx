@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import * as THREE from 'three';
-import './Methodology.css';
+import './Bunny.css';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader'
-import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 const style = {
     height: 500 // control scene size by setting container dimensions
@@ -36,11 +36,11 @@ class Elephant extends Component {
             0.1, // near plane
             1000 // far plane
         );
-        this.camera.position.z = 500; 
-        this.controls = new OrbitControls( this.camera, this.mount );
+        this.camera.position.z = 500;
+        this.controls = new OrbitControls(this.camera, this.mount);
         this.renderer = new THREE.WebGLRenderer();
-        this.renderer.setSize( width, height );
-        this.mount.appendChild( this.renderer.domElement ); // mount using React ref
+        this.renderer.setSize(width, height);
+        this.mount.appendChild(this.renderer.domElement); // mount using React ref
     };
 
     loadTheModel = () => {
@@ -57,11 +57,11 @@ class Elephant extends Component {
             geometry => {
                 const el = new THREE.Mesh(geometry)
                 this.scene.add(el)
-            
+
 
                 // change some custom props of the element: placement, color, rotation, anything that should be
                 // done once the model was loaded and ready for display
-                el.position.set(0, -150,0 );
+                el.position.set(0, -150, 0);
                 el.material.color.set(0x50C878);
                 el.rotation.x = 23.5;
 
@@ -69,18 +69,18 @@ class Elephant extends Component {
                 this.model = el;
             },
             // called when loading is in progresses
-             ( xhr ) => {
+            (xhr) => {
 
                 const loadingPercentage = Math.ceil(xhr.loaded / xhr.total * 100);
-                console.log( ( loadingPercentage ) + '% loaded' );
+                console.log((loadingPercentage) + '% loaded');
 
                 // update parent react component to display loading percentage
                 this.props.onProgress(loadingPercentage);
             },
             // called when loading has errors
-             ( error ) => {
+            (error) => {
 
-                console.log( 'An error happened:' + error );
+                console.log('An error happened:' + error);
 
             }
         );
@@ -91,25 +91,25 @@ class Elephant extends Component {
         const lights = [];
 
         // set color and intensity of lights
-        lights[ 0 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-        lights[ 1 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-        lights[ 2 ] = new THREE.PointLight( 0xffffff, 1, 0 );
+        lights[0] = new THREE.PointLight(0xffffff, 1, 0);
+        lights[1] = new THREE.PointLight(0xffffff, 1, 0);
+        lights[2] = new THREE.PointLight(0xffffff, 1, 0);
 
         // place some lights around the scene for best looks and feel
-        lights[ 0 ].position.set( 0, 2000, 0 );
-        lights[ 1 ].position.set( 1000, 2000, 1000 );
-        lights[ 2 ].position.set( - 1000, - 2000, - 1000 );
+        lights[0].position.set(0, 2000, 0);
+        lights[1].position.set(1000, 2000, 1000);
+        lights[2].position.set(- 1000, - 2000, - 1000);
 
-        this.scene.add( lights[ 0 ] );
-        this.scene.add( lights[ 1 ] );
-        this.scene.add( lights[ 2 ] );
+        this.scene.add(lights[0]);
+        this.scene.add(lights[1]);
+        this.scene.add(lights[2]);
     };
 
     startAnimationLoop = () => {
         // slowly rotate an object
         if (this.model) this.model.rotation.z += 0.005;
 
-        this.renderer.render( this.scene, this.camera );
+        this.renderer.render(this.scene, this.camera);
 
         // The window.requestAnimationFrame() method tells the browser that you wish to perform
         // an animation and requests that the browser call a specified function
@@ -121,7 +121,7 @@ class Elephant extends Component {
         const width = this.mount.clientWidth;
         const height = this.mount.clientHeight;
 
-        this.renderer.setSize( width, height );
+        this.renderer.setSize(width, height);
         this.camera.aspect = width / height;
 
         // Note that after making changes to most of camera properties you have to call
@@ -135,10 +135,10 @@ class Elephant extends Component {
 }
 
 class Methodology extends Component {
-    state = {isMounted: true};
+    state = { isMounted: true };
 
     render() {
-        const {isMounted = true, loadingPercentage = 0} = this.state;
+        const { isMounted = true, loadingPercentage = 0 } = this.state;
         return (
             <div className="App">
                 <h1 className="text-title">If you cannot afford any of our products, <br></br>here is a free 3D-cyber bunny for you to enjoy capitalism!</h1>
@@ -148,9 +148,9 @@ class Methodology extends Component {
                     {isMounted && loadingPercentage !== 100 && <div className="text-caption">Loading Model: {loadingPercentage}%</div>}
                 </>
             </div>
-            
+
         )
     }
 }
 
-export default Methodology;
+export { Methodology };
